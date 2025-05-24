@@ -59,6 +59,8 @@
     'type': 'boolean',
     'required': false,
     'default': 'false'
+  },
+  {
     'name': 'fixedDate',
     'description': '<p>Which part of the range should be fixed</p>\n',
     'type': '\'start\' | \'end\'',

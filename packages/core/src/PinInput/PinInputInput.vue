@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { PrimitiveProps } from '@/Primitive'
 import type { PinInputValue } from './PinInputRoot.vue'
+import type { PrimitiveProps } from '@/Primitive'
 import { Primitive, usePrimitiveElement } from '@/Primitive'
 import { getActiveElement, useArrowNavigation } from '@/shared'
 import { injectPinInputRootContext } from './PinInputRoot.vue'
