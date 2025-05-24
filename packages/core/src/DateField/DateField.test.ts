@@ -1,12 +1,12 @@
 import type { DateFields, DateValue, TimeFields } from '@internationalized/date'
 
 import type { DateFieldRootProps } from './DateFieldRoot.vue'
-import { useTestKbd } from '@/shared'
 import { CalendarDate, CalendarDateTime, now, parseAbsoluteToLocal, toZoned } from '@internationalized/date'
 import userEvent from '@testing-library/user-event'
 import { render } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
+import { useTestKbd } from '@/shared'
 import DateField from './story/_DateField.vue'
 
 const calendarDate = new CalendarDate(1980, 1, 20)

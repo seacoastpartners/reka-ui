@@ -37,10 +37,10 @@ export const [injectMenubarRootContext, provideMenubarRootContext]
 </script>
 
 <script setup lang="ts">
-import { Primitive } from '@/Primitive'
-import { RovingFocusGroup } from '@/RovingFocus'
 import { useVModel } from '@vueuse/core'
 import { ref, toRefs } from 'vue'
+import { Primitive } from '@/Primitive'
+import { RovingFocusGroup } from '@/RovingFocus'
 
 const props = withDefaults(defineProps<MenubarRootProps>(), {
   loop: false,

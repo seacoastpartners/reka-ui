@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { PrimitiveProps } from '@/Primitive'
 import type { DateValue } from '@internationalized/date'
+import type { PrimitiveProps } from '@/Primitive'
 
 export interface CalendarNextProps extends PrimitiveProps {
   /** The function to be used for the next page. Overwrites the `nextPage` function set on the `CalendarRoot`. */
@@ -16,8 +16,8 @@ export interface CalendarNextSlot {
 </script>
 
 <script setup lang="ts">
-import { Primitive } from '@/Primitive'
 import { computed } from 'vue'
+import { Primitive } from '@/Primitive'
 import { injectCalendarRootContext } from './CalendarRoot.vue'
 
 const props = withDefaults(defineProps<CalendarNextProps>(), { as: 'button', step: 'month' })

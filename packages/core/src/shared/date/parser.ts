@@ -1,7 +1,7 @@
-import type { Formatter } from '@/shared'
-import type { DateSegmentPart, Granularity, HourCycle, SegmentContentObj, SegmentPart, SegmentValueObj, TimeSegmentPart } from '@/shared/date'
 import type { DateFields, DateValue } from '@internationalized/date'
 import type { Ref } from 'vue'
+import type { Formatter } from '@/shared'
+import type { DateSegmentPart, Granularity, HourCycle, SegmentContentObj, SegmentPart, SegmentValueObj, TimeSegmentPart } from '@/shared/date'
 import { isZonedDateTime, toDate } from '@/date'
 import { DATE_SEGMENT_PARTS, EDITABLE_SEGMENT_PARTS, getOptsByGranularity, getPlaceholder, isDateSegmentPart, isSegmentPart, TIME_SEGMENT_PARTS } from '@/shared/date'
 

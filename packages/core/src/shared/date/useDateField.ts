@@ -1,10 +1,10 @@
-import type { Formatter } from '@/shared'
 import type { CalendarDateTime, CycleTimeOptions, DateFields, DateValue, TimeFields } from '@internationalized/date'
 import type { Ref } from 'vue'
 import type { AnyExceptLiteral, HourCycle, SegmentPart, SegmentValueObj } from './types'
+import type { Formatter } from '@/shared'
+import { computed } from 'vue'
 import { getDaysInMonth, toDate } from '@/date'
 import { useKbd } from '@/shared'
-import { computed } from 'vue'
 import { isAcceptableSegmentKey, isNumberString, isSegmentNavigationKey } from './segment'
 
 type MinuteSecondIncrementProps = {

@@ -1,8 +1,8 @@
 <script lang="ts">
-import type { PrimitiveProps } from '@/Primitive'
-
 import type { Ref } from 'vue'
+
 import type { Direction, Orientation } from './utils'
+import type { PrimitiveProps } from '@/Primitive'
 import { useCollection } from '@/Collection'
 import { createContext, useDirection, useForwardExpose, useId } from '@/shared'
 
@@ -91,9 +91,6 @@ export const [injectNavigationMenuContext, provideNavigationMenuContext]
 </script>
 
 <script setup lang="ts">
-import {
-  Primitive,
-} from '@/Primitive'
 import { refAutoReset, useDebounceFn, useVModel } from '@vueuse/core'
 import {
   computed,
@@ -101,6 +98,9 @@ import {
   toRefs,
   watchEffect,
 } from 'vue'
+import {
+  Primitive,
+} from '@/Primitive'
 
 const props = withDefaults(defineProps<NavigationMenuRootProps>(), {
   modelValue: undefined,

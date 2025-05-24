@@ -73,10 +73,10 @@ export const [injectEditableRootContext, provideEditableRootContext]
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { Primitive, usePrimitiveElement } from '@/Primitive'
-import { VisuallyHiddenInput } from '@/VisuallyHidden'
 import { useVModel } from '@vueuse/core'
 import { computed, ref, toRefs, watch } from 'vue'
+import { Primitive, usePrimitiveElement } from '@/Primitive'
+import { VisuallyHiddenInput } from '@/VisuallyHidden'
 
 defineOptions({
   inheritAttrs: false,

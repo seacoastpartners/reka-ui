@@ -19,10 +19,10 @@ export const [injectRadioGroupItemContext, provideRadiogroupItemContext]
 </script>
 
 <script setup lang="ts">
-import { RovingFocusItem } from '@/RovingFocus'
 import { useEventListener } from '@vueuse/core'
 import { isEqual } from 'ohash'
 import { computed, ref } from 'vue'
+import { RovingFocusItem } from '@/RovingFocus'
 import Radio from './Radio.vue'
 import { injectRadioGroupRootContext } from './RadioGroupRoot.vue'
 

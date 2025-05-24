@@ -30,9 +30,9 @@ export interface ToggleProps extends PrimitiveProps, FormFieldProps {
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { Primitive } from '@/Primitive'
 import { useVModel } from '@vueuse/core'
 import { computed } from 'vue'
+import { Primitive } from '@/Primitive'
 
 const props = withDefaults(defineProps<ToggleProps>(), {
   modelValue: undefined,
