@@ -69,7 +69,6 @@ const labelText = computed(() => rootContext.formatter.custom(toDate(props.day),
   year: 'numeric',
 }))
 
-const isDisabled = computed(() => rootContext.isDateDisabled(props.day))
 const isUnavailable = computed(() => rootContext.isDateUnavailable?.(props.day) ?? false)
 const isSelectedDate = computed(() => rootContext.isSelected(props.day))
 const isSelectionStart = computed(() => rootContext.isSelectionStart(props.day))
@@ -90,6 +89,8 @@ const isOutsideView = computed(() => {
 const isOutsideVisibleView = computed(() =>
   rootContext.isOutsideVisibleView(props.day),
 )
+
+const isDisabled = computed(() => rootContext.isDateDisabled(props.day) || (rootContext.disableDaysOutsideCurrentView.value && isOutsideView.value))
 
 const dayValue = computed(() => props.day.day.toLocaleString(rootContext.locale.value))
 
@@ -157,16 +158,20 @@ function changeDate(e: MouseEvent | KeyboardEvent, date: DateValue) {
 }
 
 function handleClick(e: MouseEvent) {
+  if (isDisabled.value)
+    return
   changeDate(e, props.day)
 }
 
 function handleFocus() {
-  if (rootContext.isDateDisabled(props.day) || rootContext.isDateUnavailable?.(props.day))
+  if (isDisabled.value || rootContext.isDateUnavailable?.(props.day))
     return
   rootContext.focusedValue.value = props.day.copy()
 }
 
 function handleArrowKey(e: KeyboardEvent) {
+  if (isDisabled.value)
+    return
   e.preventDefault()
   e.stopPropagation()
   const parentElement = rootContext.parentElement.value!
