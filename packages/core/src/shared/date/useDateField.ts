@@ -1,6 +1,6 @@
 import type { CalendarDateTime, CycleTimeOptions, DateFields, DateValue, TimeFields } from '@internationalized/date'
 import type { Ref } from 'vue'
-import type { AnyExceptLiteral, HourCycle, SegmentPart, SegmentValueObj } from './types'
+import type { AnyExceptLiteral, DateStep, HourCycle, SegmentPart, SegmentValueObj } from './types'
 import type { Formatter } from '@/shared'
 import { computed } from 'vue'
 import { getDaysInMonth, toDate } from '@/date'
@@ -273,6 +273,7 @@ export type UseDateFieldProps = {
   lastKeyZero: Ref<boolean>
   placeholder: Ref<DateValue>
   hourCycle: HourCycle
+  step: Ref<DateStep>
   formatter: Formatter
   segmentValues: Ref<SegmentValueObj>
   disabled: Ref<boolean>
@@ -286,7 +287,8 @@ export function useDateField(props: UseDateFieldProps) {
   const kbd = useKbd()
 
   function minuteSecondIncrementation({ e, part, dateRef, prevValue }: MinuteSecondIncrementProps): number {
-    const sign = e.key === kbd.ARROW_UP ? 1 : -1
+    const step = props.step.value[part] ?? 1
+    const sign = e.key === kbd.ARROW_UP ? step : -step
     const min = 0
     const max = 59
 
@@ -311,7 +313,8 @@ export function useDateField(props: UseDateFieldProps) {
     return Number.parseInt(str.slice(0, -1))
   }
   function dateTimeValueIncrementation({ e, part, dateRef, prevValue, hourCycle }: DateTimeValueIncrementation): number {
-    const sign = e.key === kbd.ARROW_UP ? 1 : -1
+    const step = props.step.value[part] ?? 1
+    const sign = e.key === kbd.ARROW_UP ? step : -step
 
     if (prevValue === null)
       return dateRef[part as keyof Omit<DateFields, 'era'>]

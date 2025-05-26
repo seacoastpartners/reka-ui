@@ -1,10 +1,9 @@
 <script lang="ts">
 import type { DateValue } from '@internationalized/date'
-
 import type { Ref } from 'vue'
 import type { PrimitiveProps } from '@/Primitive'
 import type { Formatter } from '@/shared'
-import type { HourCycle, SegmentPart, SegmentValueObj, TimeValue } from '@/shared/date'
+import type { DateStep, HourCycle, SegmentPart, SegmentValueObj, TimeValue } from '@/shared/date'
 import type { Direction, FormFieldProps } from '@/shared/types'
 import { getLocalTimeZone, isEqualDay, Time, toCalendarDateTime, today } from '@internationalized/date'
 import { isBefore } from '@/date'
@@ -16,6 +15,7 @@ import {
 
   initializeTimeSegmentValues,
   isSegmentNavigationKey,
+  normalizeDateStep,
 
   syncTimeSegmentValues,
 
@@ -30,6 +30,7 @@ type TimeFieldRootContext = {
   readonly: Ref<boolean>
   formatter: Formatter
   hourCycle: HourCycle
+  step: Ref<DateStep>
   segmentValues: Ref<SegmentValueObj>
   segmentContents: Ref<{ part: SegmentPart, value: string }[]>
   elements: Ref<Set<HTMLElement>>
@@ -48,6 +49,8 @@ export interface TimeFieldRootProps extends PrimitiveProps, FormFieldProps {
   modelValue?: TimeValue | null
   /** The hour cycle used for formatting times. Defaults to the local preference */
   hourCycle?: HourCycle
+  /** The stepping interval for the time fields. Defaults to `1`. */
+  step?: DateStep
   /** The granularity to use for formatting times. Defaults to minute if a Time is provided, otherwise defaults to minute. The field will render segments for each part of the date up to and including the specified granularity */
   granularity?: 'hour' | 'minute' | 'second'
   /** Whether or not to hide the time zone segment of the field */
@@ -124,6 +127,8 @@ const formatter = useDateFormatter(locale.value)
 const { primitiveElement, currentElement: parentElement }
   = usePrimitiveElement()
 const segmentElements = ref<Set<HTMLElement>>(new Set())
+
+const step = computed(() => normalizeDateStep(props))
 
 const convertedMinValue = computed(() => minValue.value ? convertValue(minValue.value) : undefined)
 const convertedMaxValue = computed(() => maxValue.value ? convertValue(maxValue.value) : undefined)
@@ -289,6 +294,7 @@ provideTimeFieldRootContext({
   disabled,
   formatter,
   hourCycle: props.hourCycle,
+  step,
   readonly,
   segmentValues,
   isInvalid,
