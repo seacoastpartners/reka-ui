@@ -95,7 +95,7 @@ const props = withDefaults(defineProps<EditableRootProps>(), {
 
 const emits = defineEmits<EditableRootEmits>()
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Whether the editable field is in edit mode */
     isEditing: boolean
     /** The value of the editable field */

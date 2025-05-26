@@ -58,7 +58,7 @@ const props = withDefaults(defineProps<RadioGroupRootProps>(), {
 const emits = defineEmits<RadioGroupRootEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current input values */
     modelValue: typeof modelValue.value
   }) => any

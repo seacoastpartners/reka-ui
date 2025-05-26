@@ -47,7 +47,7 @@ const props = withDefaults(defineProps<HoverCardRootProps>(), {
 const emit = defineEmits<HoverCardRootEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current open state */
     open: typeof open.value
   }) => any

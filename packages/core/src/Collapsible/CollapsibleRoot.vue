@@ -45,7 +45,7 @@ const props = withDefaults(defineProps<CollapsibleRootProps>(), {
 const emit = defineEmits<CollapsibleRootEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current open state */
     open: typeof open.value
   }) => any

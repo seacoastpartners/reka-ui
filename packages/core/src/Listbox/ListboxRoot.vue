@@ -91,7 +91,7 @@ const props = withDefaults(defineProps<ListboxRootProps>(), {
 const emits = defineEmits<ListboxRootEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current active value */
     modelValue: typeof modelValue.value
   }) => any

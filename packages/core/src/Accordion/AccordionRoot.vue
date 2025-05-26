@@ -81,7 +81,7 @@ const props = withDefaults(defineProps<AccordionRootProps<T>>(), {
 const emits = defineEmits<AccordionRootEmits<ExplicitType>>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current active value */
     modelValue: typeof modelValue.value
   }) => any

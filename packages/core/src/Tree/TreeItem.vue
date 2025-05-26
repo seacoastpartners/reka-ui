@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<TreeItemProps<T>>(), {
 const emits = defineEmits<TreeItemEmits<T>>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     isExpanded: boolean
     isSelected: boolean
     isIndeterminate: boolean | undefined

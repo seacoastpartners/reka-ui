@@ -99,7 +99,7 @@ const props = withDefaults(defineProps<DateFieldRootProps>(), {
 })
 const emits = defineEmits<DateFieldRootEmits>()
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** The current date of the field */
     modelValue: DateValue | undefined
     /** The date field segment contents */

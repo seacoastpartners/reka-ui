@@ -134,7 +134,7 @@ const props = withDefaults(defineProps<CalendarRootProps>(), {
 })
 const emits = defineEmits<CalendarRootEmits>()
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** The current date of the placeholder */
     date: DateValue
     /** The grid of dates */

@@ -106,7 +106,7 @@ const props = withDefaults(defineProps<TimeFieldRootProps>(), {
 })
 const emits = defineEmits<TimeFieldRootEmits>()
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** The current time of the field */
     modelValue: TimeValue | undefined
     /** The time field segment contents */

@@ -25,7 +25,7 @@ import { injectTreeRootContext } from './TreeRoot.vue'
 const props = defineProps<TreeVirtualizerProps>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     item: FlattenedItem<Record<string, any>>
     virtualizer: Virtualizer<Element | Window, Element>
     virtualItem: VirtualItem

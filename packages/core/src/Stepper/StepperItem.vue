@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<StepperItemProps>(), {
 })
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** The current state of the stepper item */
     state: StepperState
   }) => any

@@ -102,7 +102,7 @@ const props = withDefaults(defineProps<SplitterGroupProps>(), {
 const emits = defineEmits<SplitterGroupEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current size of layout */
     layout: typeof layout.value
   }) => any

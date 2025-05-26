@@ -57,7 +57,7 @@ const props = withDefaults(defineProps<CheckboxRootProps>(), {
 const emits = defineEmits<CheckboxRootEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current value */
     modelValue: typeof modelValue.value
     /** Current state */

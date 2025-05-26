@@ -52,7 +52,7 @@ const props = withDefaults(defineProps<ToggleGroupRootProps>(), {
 const emits = defineEmits<ToggleGroupRootEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current toggle values */
     modelValue: typeof modelValue.value
   }) => any

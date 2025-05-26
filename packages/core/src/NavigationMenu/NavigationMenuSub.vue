@@ -38,7 +38,7 @@ const props = withDefaults(defineProps<NavigationMenuSubProps>(), {
 const emits = defineEmits<NavigationMenuSubEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current input values */
     modelValue: typeof modelValue.value
   }) => any

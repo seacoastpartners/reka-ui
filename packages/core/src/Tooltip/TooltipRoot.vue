@@ -90,7 +90,7 @@ const props = withDefaults(defineProps<TooltipRootProps>(), {
 const emit = defineEmits<TooltipRootEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current open state */
     open: typeof open.value
   }) => any

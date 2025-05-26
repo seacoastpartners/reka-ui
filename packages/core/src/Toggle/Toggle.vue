@@ -43,7 +43,7 @@ const props = withDefaults(defineProps<ToggleProps>(), {
 const emits = defineEmits<ToggleEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current value */
     modelValue: typeof modelValue.value
     /** Current state */

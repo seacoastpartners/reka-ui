@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<MenubarSubProps>(), {
 const emit = defineEmits<MenubarSubEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current open state */
     open: typeof open.value
   }) => any

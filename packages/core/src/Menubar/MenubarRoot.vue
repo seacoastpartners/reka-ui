@@ -48,7 +48,7 @@ const props = withDefaults(defineProps<MenubarRootProps>(), {
 const emit = defineEmits<MenubarRootEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current input values */
     modelValue: typeof modelValue.value
   }) => any

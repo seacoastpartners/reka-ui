@@ -12,7 +12,7 @@ import { injectComboboxRootContext } from './ComboboxRoot.vue'
 const props = defineProps<ComboboxVirtualizerProps<T>>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     option: T
     virtualizer: Virtualizer<HTMLElement, Element>
     virtualItem: VirtualItem

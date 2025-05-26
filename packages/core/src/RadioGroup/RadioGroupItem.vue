@@ -38,7 +38,7 @@ const props = withDefaults(defineProps<RadioGroupItemProps>(), {
 const emits = defineEmits<RadioGroupItemEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current checked state */
     checked: typeof checked.value
     /** Required state */

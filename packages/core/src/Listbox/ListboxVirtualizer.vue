@@ -29,7 +29,7 @@ import { compare, queryCheckedElement } from './utils'
 const props = defineProps<ListboxVirtualizerProps<T>>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     option: T
     virtualizer: Virtualizer<HTMLElement, Element>
     virtualItem: VirtualItem

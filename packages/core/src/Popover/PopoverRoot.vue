@@ -53,7 +53,7 @@ const props = withDefaults(defineProps<PopoverRootProps>(), {
 const emit = defineEmits<PopoverRootEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current open state */
     open: typeof open.value
   }) => any

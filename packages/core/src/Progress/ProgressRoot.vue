@@ -86,7 +86,7 @@ const props = withDefaults(defineProps<ProgressRootProps>(), {
 const emit = defineEmits<ProgressRootEmits>()
 
 defineSlots<{
-  default: (props: {
+  default?: (props: {
     /** Current input values */
     modelValue: typeof modelValue.value
   }) => any
