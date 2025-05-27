@@ -16,6 +16,7 @@ import {
   initializeTimeSegmentValues,
   isSegmentNavigationKey,
   normalizeDateStep,
+  normalizeHourCycle,
 
   syncTimeSegmentValues,
 
@@ -123,7 +124,9 @@ const { disabled, readonly, granularity, defaultValue, minValue, maxValue, dir: 
 const locale = useLocale(propLocale)
 const dir = useDirection(propDir)
 
-const formatter = useDateFormatter(locale.value)
+const formatter = useDateFormatter(locale.value, {
+  hourCycle: normalizeHourCycle(props.hourCycle),
+})
 const { primitiveElement, currentElement: parentElement }
   = usePrimitiveElement()
 const segmentElements = ref<Set<HTMLElement>>(new Set())
