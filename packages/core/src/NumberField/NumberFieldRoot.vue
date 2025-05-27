@@ -4,7 +4,7 @@ import type { PrimitiveProps } from '@/Primitive'
 import type { FormFieldProps } from '@/shared/types'
 import { useVModel } from '@vueuse/core'
 import { computed, ref, toRefs } from 'vue'
-import { clamp, createContext, snapValueToStep, useFormControl, useLocale } from '@/shared'
+import { clamp, createContext, isNullish, snapValueToStep, useFormControl, useLocale } from '@/shared'
 
 export interface NumberFieldRootProps extends PrimitiveProps, FormFieldProps {
   defaultValue?: number
@@ -36,7 +36,7 @@ export type NumberFieldRootEmits = {
 }
 
 interface NumberFieldRootContext {
-  modelValue: Ref<number>
+  modelValue: Ref<number | undefined>
   handleIncrease: (multiplier?: number) => void
   handleDecrease: (multiplier?: number) => void
   handleMinMaxValue: (type: 'min' | 'max') => void
@@ -80,7 +80,7 @@ const { disabled, disableWheelChange, invertWheelChange, min, max, step, stepSna
 const modelValue = useVModel(props, 'modelValue', emits, {
   defaultValue: props.defaultValue,
   passive: (props.modelValue === undefined) as false,
-}) as Ref<number>
+}) as Ref<number | undefined>
 
 const { primitiveElement, currentElement } = usePrimitiveElement()
 
@@ -89,12 +89,20 @@ const isFormControl = useFormControl(currentElement)
 const inputEl = ref<HTMLInputElement>()
 
 const isDecreaseDisabled = computed(() => (
-  clampInputValue(modelValue.value) === min.value
-  || (min.value && !isNaN(modelValue.value) ? (handleDecimalOperation('-', modelValue.value, step.value) < min.value) : false)),
+  !isNullish(modelValue.value) && (
+    clampInputValue(modelValue.value) === min.value
+    || (min.value && !isNaN(modelValue.value)
+    )
+      ? (handleDecimalOperation('-', modelValue.value, step.value) < min.value)
+      : false)),
 )
 const isIncreaseDisabled = computed(() => (
-  clampInputValue(modelValue.value) === max.value
-  || (max.value && !isNaN(modelValue.value) ? (handleDecimalOperation('+', modelValue.value, step.value) > max.value) : false)),
+  !isNullish(modelValue.value) && (
+    clampInputValue(modelValue.value) === max.value
+    || (max.value && !isNaN(modelValue.value)
+    )
+      ? (handleDecimalOperation('+', modelValue.value, step.value) > max.value)
+      : false)),
 )
 
 function handleChangingValue(type: 'increase' | 'decrease', multiplier = 1) {
@@ -143,7 +151,7 @@ const inputMode = computed<HTMLAttributes['inputmode']>(() => {
 // Replace negative textValue formatted using currencySign: 'accounting'
 // with a textValue that can be announced using a minus sign.
 const textValueFormatter = useNumberFormatter(locale, formatOptions)
-const textValue = computed(() => isNaN(modelValue.value) ? '' : textValueFormatter.format(modelValue.value))
+const textValue = computed(() => isNullish(modelValue.value) || isNaN(modelValue.value) ? '' : textValueFormatter.format(modelValue.value))
 
 function validate(val: string) {
   return numberParser.isValidPartialNumber(val, min.value, max.value)
@@ -168,8 +176,7 @@ function clampInputValue(val: number) {
 
 function applyInputValue(val: string) {
   const parsedValue = numberParser.parse(val)
-
-  modelValue.value = clampInputValue(parsedValue)
+  modelValue.value = isNaN(parsedValue) ? undefined : clampInputValue(parsedValue)
   // Set to empty state if input value is empty
   if (!val.length)
     return setInputValue(val)

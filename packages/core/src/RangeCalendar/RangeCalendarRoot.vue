@@ -46,7 +46,7 @@ type RangeCalendarRootContext = {
   isDateHighlightable?: Matcher
   isOutsideVisibleView: (date: DateValue) => boolean
   allowNonContiguousRanges: Ref<boolean>
-  highlightedRange: Ref<{ start: DateValue; end: DateValue } | null>
+  highlightedRange: Ref<{ start: DateValue, end: DateValue } | null>
   focusedValue: Ref<DateValue | undefined>
   lastPressedDateValue: Ref<DateValue | undefined>
   isSelected: (date: DateValue) => boolean
@@ -135,8 +135,8 @@ export type RangeCalendarRootEmits = {
   'update:startValue': [date: DateValue | undefined]
 }
 
-export const [injectRangeCalendarRootContext, provideRangeCalendarRootContext] =
-  createContext<RangeCalendarRootContext>('RangeCalendarRoot')
+export const [injectRangeCalendarRootContext, provideRangeCalendarRootContext]
+  = createContext<RangeCalendarRootContext>('RangeCalendarRoot')
 </script>
 
 <script setup lang="ts">
@@ -211,8 +211,8 @@ const {
   maximumDays,
 } = toRefs(props)
 
-const { primitiveElement, currentElement: parentElement } =
-  usePrimitiveElement()
+const { primitiveElement, currentElement: parentElement }
+  = usePrimitiveElement()
 const dir = useDirection(propDir)
 const locale = useLocale(propLocale)
 
@@ -228,7 +228,7 @@ const modelValue = useVModel(props, 'modelValue', emits, {
 const currentModelValue = computed(() =>
   isNullish(modelValue.value)
     ? { start: undefined, end: undefined }
-    : modelValue.value
+    : modelValue.value,
 )
 
 const defaultDate = getDefaultDate({
@@ -306,19 +306,19 @@ const {
 
 watch(modelValue, (_modelValue, _prevValue) => {
   if (
-    (!_prevValue?.start && _modelValue?.start) ||
-    !_modelValue ||
-    !_modelValue.start ||
-    (startValue.value && !isEqualDay(_modelValue.start, startValue.value))
+    (!_prevValue?.start && _modelValue?.start)
+    || !_modelValue
+    || !_modelValue.start
+    || (startValue.value && !isEqualDay(_modelValue.start, startValue.value))
   ) {
     startValue.value = _modelValue?.start?.copy?.()
   }
 
   if (
-    (!_prevValue?.end && _modelValue.end) ||
-    !_modelValue ||
-    !_modelValue.end ||
-    (endValue.value && !isEqualDay(_modelValue.end, endValue.value))
+    (!_prevValue?.end && _modelValue.end)
+    || !_modelValue
+    || !_modelValue.end
+    || (endValue.value && !isEqualDay(_modelValue.end, endValue.value))
   ) {
     endValue.value = _modelValue?.end?.copy?.()
   }
@@ -335,32 +335,35 @@ watch([startValue, endValue], ([_startValue, _endValue]) => {
   const value = currentModelValue.value
 
   if (
-    value &&
-    value.start &&
-    value.end &&
-    _startValue &&
-    _endValue &&
-    isEqualDay(value.start, _startValue) &&
-    isEqualDay(value.end, _endValue)
-  )
+    value
+    && value.start
+    && value.end
+    && _startValue
+    && _endValue
+    && isEqualDay(value.start, _startValue)
+    && isEqualDay(value.end, _endValue)
+  ) {
     return
+  }
 
   isEditing.value = true
   if (_startValue && _endValue) {
     isEditing.value = false
     if (
-      value.start &&
-      value.end &&
-      isEqualDay(value.start, _startValue) &&
-      isEqualDay(value.end, _endValue)
-    )
+      value.start
+      && value.end
+      && isEqualDay(value.start, _startValue)
+      && isEqualDay(value.end, _endValue)
+    ) {
       return
+    }
     if (isBefore(_endValue, _startValue)) {
       modelValue.value = {
         start: _endValue.copy(),
         end: _startValue.copy(),
       }
-    } else {
+    }
+    else {
       modelValue.value = {
         start: _startValue.copy(),
         end: _endValue.copy(),
@@ -425,7 +428,8 @@ provideRangeCalendarRootContext({
 })
 
 onMounted(() => {
-  if (initialFocus.value) handleCalendarInitialFocus(parentElement.value)
+  if (initialFocus.value)
+    handleCalendarInitialFocus(parentElement.value)
 })
 </script>
 
@@ -455,7 +459,10 @@ onMounted(() => {
         width: 1px;
       "
     >
-      <div role="heading" aria-level="2">
+      <div
+        role="heading"
+        aria-level="2"
+      >
         {{ fullCalendarLabel }}
       </div>
     </div>
