@@ -40,6 +40,6 @@
   {
     'name': 'close',
     'description': '<p>Close the dialog</p>\n',
-    'type': '() => void'
+    'type': '(): void'
   }
 ]" />
