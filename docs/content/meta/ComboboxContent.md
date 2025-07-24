@@ -8,6 +8,12 @@
     'required': false
   },
   {
+    'name': 'alignFlip',
+    'description': '<p>Flip alignment when colliding with boundary.\nMay only occur when <code>prioritizePosition</code> is true.</p>\n',
+    'type': 'boolean',
+    'required': false
+  },
+  {
     'name': 'alignOffset',
     'description': '<p>An offset in pixels from the <code>start</code> or <code>end</code> alignment options.</p>\n',
     'type': 'number',
@@ -108,6 +114,12 @@
     'name': 'side',
     'description': '<p>The preferred side of the trigger to render against when open.\nWill be reversed when collisions occur and avoidCollisions\nis enabled.</p>\n',
     'type': '\'top\' | \'right\' | \'bottom\' | \'left\'',
+    'required': false
+  },
+  {
+    'name': 'sideFlip',
+    'description': '<p>Flip to the opposite side when colliding with boundary.</p>\n',
+    'type': 'boolean',
     'required': false
   },
   {

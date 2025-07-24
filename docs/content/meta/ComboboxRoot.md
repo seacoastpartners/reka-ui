@@ -81,6 +81,20 @@
     'required': false
   },
   {
+    'name': 'openOnClick',
+    'description': '<p>Whether to open the combobox when the input is clicked</p>\n',
+    'type': 'boolean',
+    'required': false,
+    'default': 'false'
+  },
+  {
+    'name': 'openOnFocus',
+    'description': '<p>Whether to open the combobox when the input is focused</p>\n',
+    'type': 'boolean',
+    'required': false,
+    'default': 'false'
+  },
+  {
     'name': 'required',
     'description': '<p>When <code>true</code>, indicates that the user must set the value before the owning form can be submitted.</p>\n',
     'type': 'boolean',
@@ -99,20 +113,6 @@
     'type': 'boolean',
     'required': false,
     'default': 'true'
-  },
-  {
-    'name': 'openOnFocus',
-    'description': '<p>Whether to open the Combobox when the input is focused</p>\n',
-    'type': 'boolean',
-    'required': false,
-    'default': 'false'
-  },
-  {
-    'name': 'openOnClick',
-    'description': '<p>Whether to open the Combobox when the input is clicked</p>\n',
-    'type': 'boolean',
-    'required': false,
-    'default': 'false'
   }
 ]" />
 
