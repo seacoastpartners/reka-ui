@@ -38,6 +38,7 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#00C38A' }],
     ['link', { rel: 'icon', href: '/logo.png' }],
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'canonical', href: 'https://reka-ui.com' }],
     ['meta', { name: 'author', content: `${teamMembers.map(c => c.name).join(', ')} and ${rekaName} contributors` }],
     ['meta', { name: 'keywords', content: 'vue, nuxt, component-library, radix, radix-vue, reka-ui, typescript' }],
     ['meta', { property: 'og:title', content: rekaName }],
