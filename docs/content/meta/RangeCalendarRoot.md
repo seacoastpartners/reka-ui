@@ -205,7 +205,12 @@
     'name': 'update:startValue',
     'description': '<p>Event handler called whenever the start value changes</p>\n',
     'type': '[date: DateValue]'
-  }
+  },
+  {
+    'name': 'update:validModelValue',
+    'description': '<p>Event handler called whenever the rawModel value changes</p>\n',
+    'type': '[date: DateRange]'
+  },
 ]" />
 
 <SlotsTable :data="[
