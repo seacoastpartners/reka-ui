@@ -66,6 +66,7 @@
     "!src/**/story"
   ],
   "scripts": {
+    "prepare": "pnpm i --frozen-lockfile && pnpm build-only",
     "build": "pnpm type-check && pnpm build-only",
     "build-only": "tsdown && tsx scripts/postbuild.ts",
     "watch": "tsdown --watch",
