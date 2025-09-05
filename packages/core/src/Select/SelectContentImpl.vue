@@ -95,6 +95,9 @@ import SelectItemAlignedPosition from './SelectItemAlignedPosition.vue'
 import SelectPopperPosition from './SelectPopperPosition.vue'
 import { injectSelectRootContext } from './SelectRoot.vue'
 
+// PATCH: attach document listeners to shadow root if it exists
+const rootDocument = document.activeElement?.shadowRoot || document
+
 const props = withDefaults(defineProps<SelectContentImplProps>(), {
   align: 'start',
   position: 'item-aligned',
@@ -162,21 +165,21 @@ watchEffect((cleanupFn) => {
       if (!content.value?.contains(event.target as HTMLElement))
         onOpenChange(false)
     }
-    document.removeEventListener('pointermove', handlePointerMove)
+    rootDocument.removeEventListener('pointermove', handlePointerMove)
     triggerPointerDownPosRef.value = null
   }
 
   if (triggerPointerDownPosRef.value !== null) {
-    document.addEventListener('pointermove', handlePointerMove)
-    document.addEventListener('pointerup', handlePointerUp, {
+    rootDocument.addEventListener('pointermove', handlePointerMove)
+    rootDocument.addEventListener('pointerup', handlePointerUp, {
       capture: true,
       once: true,
     })
   }
 
   cleanupFn(() => {
-    document.removeEventListener('pointermove', handlePointerMove)
-    document.removeEventListener('pointerup', handlePointerUp, {
+    rootDocument.removeEventListener('pointermove', handlePointerMove)
+    rootDocument.removeEventListener('pointerup', handlePointerUp, {
       capture: true,
     })
   })
